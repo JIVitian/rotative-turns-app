@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { EmployeeService } from './employee.service';
+import { Observable } from 'rxjs';
+import { EmployeeGetResponse } from './models/employee-get-all-response';
 
 @Component({
   selector: 'app-employee',
@@ -9,17 +11,12 @@ import { EmployeeService } from './employee.service';
 })
 export class EmployeeComponent implements OnInit {
   private destroy$ = new Subject<void>();
+  employees$: Observable<EmployeeGetResponse[]> = new Observable();
 
   constructor(private readonly employeeService: EmployeeService) {}
 
   ngOnInit(): void {
-    this.employeeService
-      .getAll()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe({
-        next: response => console.log(response),
-        error: error => console.error(error),
-      });
+    this.employees$ = this.employeeService.getAll();
   }
 
   ngOnDestroy(): void {
