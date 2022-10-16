@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { environment } from 'src/environments/environment';
 import { Employee } from './models/employee';
+import { EmployeeGetResponse } from './models/employee-get-all-response';
 
 @Injectable({
   providedIn: 'root',
@@ -13,14 +14,16 @@ export class EmployeeService {
   constructor(private readonly httpClient: HttpClient) {}
 
   getAll() {
-    return this.httpClient.get(environment.baseUrl + '/workday/list/hours-per-workday');
+    return this.httpClient.get<Array<EmployeeGetResponse>>(
+      environment.baseUrl + '/workday/list/hours-per-workday'
+    );
   }
 
   getById(id: number) {
-    return this.httpClient.get(this.endpoint + `/${id}`);
+    return this.httpClient.get<Employee>(this.endpoint + `/${id}`);
   }
 
   create(employee: Employee) {
-    return this.httpClient.post(this.endpoint, employee);
+    return this.httpClient.post<Employee>(this.endpoint, employee);
   }
 }
