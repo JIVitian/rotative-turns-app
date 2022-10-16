@@ -1,3 +1,4 @@
+export * from './models';
 export * from './employee-routing.module';
 export * from './employee.component';
 export * from './employee.module';
