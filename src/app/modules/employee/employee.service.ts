@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+
 import { environment } from 'src/environments/environment';
 import { Employee } from './models/employee';
 
@@ -13,7 +13,7 @@ export class EmployeeService {
   constructor(private readonly httpClient: HttpClient) {}
 
   getAll() {
-    return this.httpClient.get(this.endpoint + 'all');
+    return this.httpClient.get(environment.baseUrl + '/workday/list/hours-per-workday');
   }
 
   getById(id: number) {
