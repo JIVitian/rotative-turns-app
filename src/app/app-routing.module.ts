@@ -4,12 +4,15 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: 'employee',
-    loadChildren: () =>
-      import('./modules').then(m => m.EmployeeModule),
+    loadChildren: () => import('./modules').then(m => m.EmployeeModule),
+  },
+  {
+    path: 'workday/type',
+    loadChildren: () => import('./modules').then(m => m.WorkdayTypeModule),
   },
   {
     path: 'workday',
-    loadChildren: () => import('./modules').then(m => m.WorkdayModule)
+    loadChildren: () => import('./modules').then(m => m.WorkdayModule),
   },
   { path: '**', redirectTo: 'employee' },
 ];
