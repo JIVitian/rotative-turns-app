@@ -7,9 +7,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavbarComponent } from './components';
 import { AppRoutingModule } from './app-routing.module';
 import { EmployeeModule } from './modules';
+import { WorkdayComponent } from './modules/workday/workday.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, WorkdayComponent],
   imports: [
     AppRoutingModule,
     BrowserModule,
