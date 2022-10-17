@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Workday } from './models';
+import { UpdateWorkdayDTO } from './models/update-workday-dto';
 
 @Injectable({
   providedIn: 'root',
@@ -12,22 +13,22 @@ export class WorkdayService {
   constructor(private readonly httpClient: HttpClient) {}
 
   getAll() {
-    return this.httpClient.get(this.endpoint + '/all');
+    return this.httpClient.get<Workday[]>(this.endpoint + '/all');
   }
 
   getById(id: number) {
-    return this.httpClient.get(this.endpoint + `/${id}`);
+    return this.httpClient.get<Workday>(this.endpoint + `/${id}`);
   }
 
-  create(workday: Workday) {
-    return this.httpClient.post(this.endpoint, workday);
+  create(workday: UpdateWorkdayDTO) {
+    return this.httpClient.post<Workday>(this.endpoint, workday);
   }
 
   update(workday: Workday) {
-    return this.httpClient.patch(this.endpoint + '/update', workday);
+    return this.httpClient.patch<Workday>(this.endpoint + '/update', workday);
   }
 
   delete(id: number) {
-    return this.httpClient.delete(this.endpoint + `/delete/${id}`);
+    return this.httpClient.delete<boolean>(this.endpoint + `/delete/${id}`);
   }
 }

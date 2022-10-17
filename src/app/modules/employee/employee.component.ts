@@ -11,7 +11,7 @@ import { EmployeeGetResponse } from './models/employee-get-all-response';
 })
 export class EmployeeComponent implements OnInit {
   private destroy$ = new Subject<void>();
-  employees$: Observable<EmployeeGetResponse[]> = new Observable();
+  employees$ = new Observable<EmployeeGetResponse[]>();
 
   constructor(private readonly employeeService: EmployeeService) {}
 

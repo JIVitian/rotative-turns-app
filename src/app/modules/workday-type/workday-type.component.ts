@@ -9,7 +9,7 @@ import { WorkdayType } from './models';
   styleUrls: ['./workday-type.component.css'],
 })
 export class WorkdayTypeComponent implements OnInit {
-  types$: Observable<WorkdayType> = new Observable();
+  types$ = new Observable<WorkdayType>();
 
   constructor(private readonly workdayTypeService: WorkdayTypeService) {}
 
