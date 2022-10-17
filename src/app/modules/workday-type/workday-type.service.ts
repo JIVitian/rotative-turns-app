@@ -13,22 +13,22 @@ export class WorkdayTypeService {
   constructor(private readonly httpClient: HttpClient) {}
 
   getAll() {
-    return this.httpClient.get(this.endpoint + '/all');
+    return this.httpClient.get<WorkdayType>(this.endpoint + '/all');
   }
 
   getById(id: number) {
-    return this.httpClient.get(this.endpoint + `/${id}`);
+    return this.httpClient.get<WorkdayType>(this.endpoint + `/${id}`);
   }
 
   create(workdayType: WorkdayType) {
-    return this.httpClient.post(this.endpoint, workdayType);
+    return this.httpClient.post<WorkdayType>(this.endpoint, workdayType);
   }
 
   update(workdayType: WorkdayType) {
-    return this.httpClient.patch(this.endpoint + '/update', workdayType);
+    return this.httpClient.patch<WorkdayType>(this.endpoint + '/update', workdayType);
   }
 
   delete(id: number) {
-    return this.httpClient.delete(this.endpoint + `/delete/${id}`);
+    return this.httpClient.delete<boolean>(this.endpoint + `/delete/${id}`);
   }
 }
