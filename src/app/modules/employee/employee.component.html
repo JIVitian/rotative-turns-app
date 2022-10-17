@@ -1,1 +1,100 @@
-<p>{{ employees$ | async | json }}</p>
+<div class="container mt-4 mb-4">
+  <!-- Data Table -->
+  <section class="col-4 w-100">
+    <div class="mat-elevation-z8">
+      <table
+        mat-table
+        [dataSource]="dataSource"
+        class="table table-bordered mb-0 w-100"
+      >
+        <!-- Position Column -->
+        <ng-container matColumnDef="id">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            scope="col"
+            class="text-center align-middle"
+          >
+            #
+          </th>
+          <td
+            mat-cell
+            *matCellDef="let element"
+            class="text-center align-middle"
+          >
+            {{ element.employee.id }}
+          </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            scope="col"
+            class="text-center align-middle"
+          >
+            Name
+          </th>
+          <td
+            mat-cell
+            *matCellDef="let element"
+            class="text-center align-middle"
+          >
+            {{ element.employee.name }}
+          </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="employeeHoursForEachWorkdayType">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            scope="col"
+            class="text-center align-middle"
+          >
+            Hours worked by workday Type
+          </th>
+          <td
+            class="text-center align-middle p-0 border-start-0 border-end-0"
+            mat-cell
+            *matCellDef="let element"
+          >
+            <ul class="list-group rounded-0">
+              <li
+                *ngFor="
+                  let workday of element.employeeHoursForEachWorkdayType;
+                  let i = index
+                "
+                class="list-group-item"
+                [ngClass]="{
+                  'border-top-0': i === 0,
+                  'border-bottom-0':
+                    i === element.employeeHoursForEachWorkdayType.length - 1
+                }"
+              >
+                <b>{{ workday.workdayType }}:</b>
+                {{ workday.hours }}hs
+              </li>
+            </ul>
+          </td>
+        </ng-container>
+
+        <tr
+          mat-header-row
+          *matHeaderRowDef="displayedColumns"
+        ></tr>
+        <tr
+          mat-row
+          *matRowDef="let row; columns: displayedColumns"
+        ></tr>
+      </table>
+
+      <mat-paginator
+        [pageSizeOptions]="pageSizeOptions"
+        showFirstLastButtons
+        aria-label="Select page of periodic elements"
+      ></mat-paginator>
+    </div>
+  </section>
+</div>

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { Subject, takeUntil } from 'rxjs';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { EmployeeService } from './employee.service';
-import { Observable } from 'rxjs';
 import { EmployeeGetResponse } from './models/employee-get-all-response';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-employee',
@@ -10,17 +11,32 @@ import { EmployeeGetResponse } from './models/employee-get-all-response';
   styleUrls: ['./employee.component.css'],
 })
 export class EmployeeComponent implements OnInit {
-  private destroy$ = new Subject<void>();
-  employees$ = new Observable<EmployeeGetResponse[]>();
+  // private destroy$ = new Subject<void>();
+  // employeesData$ = new Observable<EmployeeGetResponse[]>();
+  employeeData: EmployeeGetResponse[] = [];
+  dataToShow: EmployeeGetResponse[] = [];
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  dataSource = new MatTableDataSource<EmployeeGetResponse>();
+
+  displayedColumns: string[] = ['id', 'name', 'employeeHoursForEachWorkdayType'];
+
+  // Pagination
+  pageIndex = 0;
+  pageSize = 5;
+  pageSizeOptions: number[] = [5, 10, 25, 50, 100];
 
   constructor(private readonly employeeService: EmployeeService) {}
 
   ngOnInit(): void {
-    this.employees$ = this.employeeService.getAll();
-  }
+    // this.employeesData$ = this.employeeService.getAll();
+    this.employeeService.getAll().subscribe(data => {
+      this.employeeData = data;
 
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
+      this.dataSource.data = this.employeeData;
+      this.dataSource.paginator = this.paginator;
+      // const from = this.pageIndex * this.pageSize;
+      // const to = from + this.pageSize;
+      // this.dataToShow = this.employeeData.slice(from, to);
+    });
   }
 }
