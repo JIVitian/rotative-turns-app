@@ -20,11 +20,11 @@ export class WorkdayService {
     return this.httpClient.get<Workday>(this.endpoint + `/${id}`);
   }
 
-  create(workday: UpdateWorkdayDTO) {
+  create(workday: Workday) {
     return this.httpClient.post<Workday>(this.endpoint, workday);
   }
 
-  update(workday: Workday) {
+  update(workday: UpdateWorkdayDTO) {
     return this.httpClient.patch<Workday>(this.endpoint + '/update', workday);
   }
 

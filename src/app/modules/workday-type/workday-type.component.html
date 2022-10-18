@@ -63,6 +63,18 @@
           mat-row
           *matRowDef="let row; columns: displayedColumns"
         ></tr>
+        <!-- No Contente Message -->
+        <tr
+          *matNoDataRow
+          class="text-center"
+        >
+          <td
+            class="text-center py-4"
+            [colSpan]="displayedColumns.length"
+          >
+            No workday types found
+          </td>
+        </tr>
       </table>
 
       <!-- Pagination -->

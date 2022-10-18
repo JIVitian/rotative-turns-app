@@ -1,7 +1,12 @@
 <main class="container mt-3 mb-4">
   <section class="w-100 d-flex mb-3">
     <h2 class="align-botton mb-0">Employees List</h2>
-    <a routerLink="new" class="btn btn-primary ms-auto">New Employee</a>
+    <a
+      routerLink="new"
+      class="btn btn-primary ms-auto"
+    >
+      New Employee
+    </a>
   </section>
 
   <!-- Data Table -->
@@ -93,6 +98,18 @@
           mat-row
           *matRowDef="let row; columns: displayedColumns"
         ></tr>
+        <!-- No Contente Message -->
+        <tr
+          *matNoDataRow
+          class="text-center"
+        >
+          <td
+            class="text-center py-4"
+            [colSpan]="displayedColumns.length"
+          >
+            No employees found
+          </td>
+        </tr>
       </table>
 
       <mat-paginator

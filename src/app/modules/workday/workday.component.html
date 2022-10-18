@@ -1,1 +1,195 @@
-<p>{{ workdays$ | async | json }}</p>
+<main class="container mt-3 mb-4">
+  <section class="w-100 d-flex mb-3">
+    <h2 class="align-botton mb-0">Workdays List</h2>
+    <a
+      routerLink="new"
+      class="btn btn-primary ms-auto"
+    >
+      New Workday
+    </a>
+  </section>
+
+  <!-- Data Table -->
+  <section class="col-4 w-100">
+    <article class="mat-elevation-z8">
+      <table
+        mat-table
+        [dataSource]="dataSource"
+        class="table table-bordered mb-0 w-100"
+      >
+        <!-- Id Column -->
+        <ng-container matColumnDef="id">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            scope="col"
+            class="text-center align-middle"
+          >
+            #
+          </th>
+          <td
+            mat-cell
+            *matCellDef="let element"
+            class="text-center align-middle"
+          >
+            {{ element.employee.id }}
+          </td>
+        </ng-container>
+
+        <!-- Employee Name Column -->
+        <ng-container matColumnDef="name">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            scope="col"
+            class="text-center align-middle"
+          >
+            Name
+          </th>
+          <td
+            mat-cell
+            *matCellDef="let workday"
+            class="text-center align-middle"
+          >
+            {{ workday.employee.name }}
+          </td>
+        </ng-container>
+
+        <!-- Workday Type Column -->
+        <ng-container matColumnDef="type">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            scope="col"
+            class="text-center align-middle"
+          >
+            Type
+          </th>
+          <td
+            mat-cell
+            *matCellDef="let workday"
+            class="text-center align-middle"
+          >
+            {{ workday.type.name }}
+          </td>
+        </ng-container>
+
+        <!-- Date Column -->
+        <ng-container matColumnDef="date">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            scope="col"
+            class="text-center align-middle"
+          >
+            Date
+          </th>
+          <td
+            mat-cell
+            *matCellDef="let workday"
+            class="text-center align-middle"
+          >
+            {{ workday.date | date: 'dd/MM/yyyy' }}
+          </td>
+        </ng-container>
+
+        <!-- Time From Column -->
+        <ng-container matColumnDef="timeFrom">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            scope="col"
+            class="text-center align-middle"
+          >
+            From
+          </th>
+          <td
+            mat-cell
+            *matCellDef="let workday"
+            class="text-center align-middle"
+          >
+            {{ workday.timeFrom | date: 'HH:mm' }}
+          </td>
+        </ng-container>
+
+        <!-- Time To Column -->
+        <ng-container matColumnDef="timeTo">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            scope="col"
+            class="text-center align-middle"
+          >
+            To
+          </th>
+          <td
+            mat-cell
+            *matCellDef="let workday"
+            class="text-center align-middle"
+          >
+            {{ workday.timeTo | date: 'HH:mm' }}
+          </td>
+        </ng-container>
+
+        <!-- Actions Column -->
+        <!-- <ng-container matColumnDef="actions">
+            <th
+              mat-header-cell
+              *matHeaderCellDef
+              scope="col"
+              class="text-center align-middle col-2"
+            >
+              Actions
+            </th>
+            <td
+              mat-cell
+              *matCellDef="let workday"
+              class="text-center align-middle"
+            >
+              <a
+                routerLink="edit/{{ workday.id }}"
+                class="btn btn-sm btn-primary me-2"
+              >
+                Edit
+              </a>
+              <button
+                class="btn btn-sm btn-danger"
+                (click)="deleteWorkday(workday.id)"
+              >
+                Delete
+              </button>
+            </td>
+          </ng-container> -->
+
+        <tr
+          mat-header-row
+          *matHeaderRowDef="displayedColumns"
+        ></tr>
+        <tr
+          mat-row
+          *matRowDef="let row; columns: displayedColumns"
+        ></tr>
+
+        <!-- No Contente Message -->
+        <tr
+          *matNoDataRow
+          class="text-center"
+        >
+          <td
+            class="text-center py-4"
+            [colSpan]="displayedColumns.length"
+          >
+            No workdays found
+          </td>
+        </tr>
+      </table>
+
+      <mat-paginator
+        [pageSizeOptions]="pageSizeOptions"
+        [pageSize]="pageSize"
+        showFirstLastButtons
+        aria-label="Select page of periodic workdays"
+      ></mat-paginator>
+    </article>
+  </section>
+</main>
