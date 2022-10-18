@@ -9,11 +9,11 @@ import { MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
-import { EditorComponent } from './pages/editor/editor.component';
+import { EmployeeEditorComponent } from './pages/editor/employee-editor.component';
 import { EmployeeComponent } from './employee.component';
 
 @NgModule({
-  declarations: [EmployeeComponent, EditorComponent],
+  declarations: [EmployeeComponent, EmployeeEditorComponent],
   imports: [
     CommonModule,
     EmployeeRoutingModule,

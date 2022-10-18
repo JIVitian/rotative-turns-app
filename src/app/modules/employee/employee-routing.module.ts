@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EmployeeComponent } from './employee.component';
-import { EditorComponent } from './pages/editor/editor.component';
+import { EmployeeEditorComponent } from './pages/editor/employee-editor.component';
 
 const routes: Routes = [
   { path: '', component: EmployeeComponent },
   {
     path: 'new',
-    component: EditorComponent,
+    component: EmployeeEditorComponent,
   },
 ];
 

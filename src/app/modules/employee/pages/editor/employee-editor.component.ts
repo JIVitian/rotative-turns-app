@@ -5,11 +5,11 @@ import { Employee } from '../../models';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 
 @Component({
-  selector: 'app-editor',
-  templateUrl: './editor.component.html',
-  styleUrls: ['./editor.component.css'],
+  selector: 'app-employee-editor',
+  templateUrl: './employee-editor.component.html',
+  styleUrls: ['./employee-editor.component.css'],
 })
-export class EditorComponent {
+export class EmployeeEditorComponent {
   employeeForm: FormGroup;
   @ViewChild('successSwal')
   public readonly successSwal: SwalComponent;
