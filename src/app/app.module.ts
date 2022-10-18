@@ -9,6 +9,7 @@ import { NavbarComponent } from './components';
 import { EmployeeModule } from './modules';
 import { WorkdayComponent } from './modules/workday/workday.component';
 import { WorkdayTypeComponent } from './modules/workday-type/workday-type.component';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   declarations: [AppComponent, WorkdayComponent, WorkdayTypeComponent],
@@ -19,6 +20,7 @@ import { WorkdayTypeComponent } from './modules/workday-type/workday-type.compon
     EmployeeModule,
     NavbarComponent,
     NgbModule,
+    SweetAlert2Module.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],
