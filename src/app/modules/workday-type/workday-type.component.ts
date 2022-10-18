@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { WorkdayTypeService } from './workday-type.service';
-import { Observable } from 'rxjs';
 import { WorkdayType } from './models';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-workday-type',
@@ -9,11 +10,22 @@ import { WorkdayType } from './models';
   styleUrls: ['./workday-type.component.css'],
 })
 export class WorkdayTypeComponent implements OnInit {
-  types$ = new Observable<WorkdayType>();
+  // Table
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  dataSource = new MatTableDataSource<WorkdayType>();
+  displayedColumns: string[] = ['id', 'name'];
+
+  // Pagination
+  pageIndex = 0;
+  pageSize = 5;
+  pageSizeOptions: number[] = [5, 10, 25];
 
   constructor(private readonly workdayTypeService: WorkdayTypeService) {}
 
   ngOnInit(): void {
-    this.types$ = this.workdayTypeService.getAll();
+    this.workdayTypeService.getAll().subscribe(data => {
+      this.dataSource.data = data;
+      this.dataSource.paginator = this.paginator;
+    });
   }
 }

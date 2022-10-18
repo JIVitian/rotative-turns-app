@@ -13,7 +13,7 @@ export class WorkdayTypeService {
   constructor(private readonly httpClient: HttpClient) {}
 
   getAll() {
-    return this.httpClient.get<WorkdayType>(this.endpoint + '/all');
+    return this.httpClient.get<WorkdayType[]>(this.endpoint + '/all');
   }
 
   getById(id: number) {

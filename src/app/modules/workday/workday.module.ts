@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 
 import { WorkdayRoutingModule } from './workday-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { WorkdayComponent } from './workday.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [WorkdayComponent],
   imports: [
     CommonModule,
     WorkdayRoutingModule,

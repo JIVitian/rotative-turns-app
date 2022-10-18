@@ -7,12 +7,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavbarComponent } from './components';
 import { EmployeeModule } from './modules';
-import { WorkdayComponent } from './modules/workday/workday.component';
-import { WorkdayTypeComponent } from './modules/workday-type/workday-type.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
-  declarations: [AppComponent, WorkdayComponent, WorkdayTypeComponent],
+  declarations: [AppComponent],
   imports: [
     AppRoutingModule,
     BrowserModule,
