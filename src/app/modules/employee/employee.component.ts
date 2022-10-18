@@ -21,7 +21,6 @@ export class EmployeeComponent implements OnInit {
 
   // Pagination
   pageIndex = 0;
-  pageSize = 5;
   pageSizeOptions: number[] = [5, 10, 25, 50, 100];
 
   constructor(private readonly employeeService: EmployeeService) {}

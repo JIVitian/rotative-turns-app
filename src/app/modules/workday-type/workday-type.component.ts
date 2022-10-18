@@ -17,7 +17,7 @@ export class WorkdayTypeComponent implements OnInit {
 
   // Pagination
   pageIndex = 0;
-  pageSize = 5;
+  pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 25];
 
   constructor(private readonly workdayTypeService: WorkdayTypeService) {}
