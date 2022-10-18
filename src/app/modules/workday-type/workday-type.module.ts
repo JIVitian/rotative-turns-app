@@ -7,9 +7,10 @@ import { MatTableModule } from '@angular/material/table';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { WorkdayTypeRoutingModule } from './workday-type-routing.module';
 import { WorkdayTypeComponent } from './workday-type.component';
+import { WorkdayTypeEditorComponent } from './pages/workday-type-editor/workday-type-editor.component';
 
 @NgModule({
-  declarations: [WorkdayTypeComponent],
+  declarations: [WorkdayTypeComponent, WorkdayTypeEditorComponent],
   imports: [
     CommonModule,
     WorkdayTypeRoutingModule,

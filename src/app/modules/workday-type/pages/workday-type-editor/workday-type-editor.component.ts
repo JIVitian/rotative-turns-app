@@ -1,16 +1,16 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { EmployeeService } from '../../employee.service';
-import { Employee } from '../../models';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
+import { WorkdayType } from '../../models';
+import { WorkdayTypeService } from '../../workday-type.service';
 
 @Component({
-  selector: 'app-employee-editor',
-  templateUrl: './employee-editor.component.html',
-  styleUrls: ['./employee-editor.component.css'],
+  selector: 'app-workday-type-editor',
+  templateUrl: './workday-type-editor.component.html',
+  styleUrls: ['./workday-type-editor.component.css'],
 })
-export class EmployeeEditorComponent {
-  employeeForm: FormGroup;
+export class WorkdayTypeEditorComponent {
+  typeForm: FormGroup;
   @ViewChild('successSwal')
   public readonly successSwal: SwalComponent;
   @ViewChild('errorSwal')
@@ -18,21 +18,23 @@ export class EmployeeEditorComponent {
 
   constructor(
     formBuilder: FormBuilder,
-    private readonly employeeService: EmployeeService
+    private readonly wordayTypeService: WorkdayTypeService
   ) {
-    this.employeeForm = formBuilder.group({
+    this.typeForm = formBuilder.group({
       name: [null, [Validators.required, Validators.pattern(/\S/)]],
     });
   }
 
   onSubmit(): void {
-    if (!this.employeeForm.valid) {
+    if (!this.typeForm.valid) {
       return;
     }
 
-    const newEmployee: Employee = this.employeeForm.value;
+    debugger;
 
-    this.employeeService.create(newEmployee).subscribe({
+    const newType: WorkdayType = this.typeForm.value;
+
+    this.wordayTypeService.create(newType).subscribe({
       next: () => this.successSwal.fire(),
       error: error => {
         if (error.messasge) {
@@ -46,9 +48,8 @@ export class EmployeeEditorComponent {
 
   hasError(field: string): boolean {
     return Boolean(
-      this.employeeForm.get(field)?.invalid &&
-        (this.employeeForm.get(field)?.touched ||
-          this.employeeForm.get(field)?.dirty)
+      this.typeForm.get(field)?.invalid &&
+        (this.typeForm.get(field)?.touched || this.typeForm.get(field)?.dirty)
     );
   }
 }

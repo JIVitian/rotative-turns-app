@@ -1,4 +1,5 @@
 export * from './models';
+export * from './pages';
 export * from './workday-type-routing.module';
 export * from './workday-type.component';
 export * from './workday-type.module';

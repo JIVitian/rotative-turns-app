@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { WorkdayTypeEditorComponent } from './pages';
 import { WorkdayTypeComponent } from './workday-type.component';
 
 const routes: Routes = [
   {
     path: '',
     component: WorkdayTypeComponent,
+  },
+  {
+    path: 'new',
+    component: WorkdayTypeEditorComponent,
   },
 ];
 
