@@ -6,7 +6,7 @@ import { EmployeeEditorComponent } from './pages/editor/employee-editor.componen
 const routes: Routes = [
   { path: '', component: EmployeeComponent },
   {
-    path: 'new',
+    path: 'create',
     component: EmployeeEditorComponent,
   },
 ];

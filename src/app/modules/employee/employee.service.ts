@@ -19,6 +19,10 @@ export class EmployeeService {
     );
   }
 
+  getAllEntity() {
+    return this.httpClient.get<Employee[]>(this.endpoint + '/all');
+  }
+
   getById(id: number) {
     return this.httpClient.get<Employee>(this.endpoint + `/${id}`);
   }

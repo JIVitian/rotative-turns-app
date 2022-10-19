@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
+import { ServerError } from 'src/app/models';
 import { WorkdayType } from '../../models';
 import { WorkdayTypeService } from '../../workday-type.service';
 
@@ -30,14 +31,12 @@ export class WorkdayTypeEditorComponent {
       return;
     }
 
-    debugger;
-
     const newType: WorkdayType = this.typeForm.value;
 
     this.wordayTypeService.create(newType).subscribe({
       next: () => this.successSwal.fire(),
-      error: error => {
-        if (error.messasge) {
+      error: ({ error }: { error: ServerError }) => {
+        if (error.message) {
           this.errorSwal.text = error.message;
         }
 

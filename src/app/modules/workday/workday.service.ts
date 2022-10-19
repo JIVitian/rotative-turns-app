@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Workday } from './models';
-import { UpdateWorkdayDTO } from './models/update-workday-dto';
+import { Workday, CreateWorkdayDTO, UpdateWorkdayDTO } from './models';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +19,7 @@ export class WorkdayService {
     return this.httpClient.get<Workday>(this.endpoint + `/${id}`);
   }
 
-  create(workday: Workday) {
+  create(workday: CreateWorkdayDTO) {
     return this.httpClient.post<Workday>(this.endpoint, workday);
   }
 

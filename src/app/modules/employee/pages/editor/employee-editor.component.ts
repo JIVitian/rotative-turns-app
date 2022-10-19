@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmployeeService } from '../../employee.service';
 import { Employee } from '../../models';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
+import { ServerError } from 'src/app/models/ServerError';
 
 @Component({
   selector: 'app-employee-editor',
@@ -34,8 +35,8 @@ export class EmployeeEditorComponent {
 
     this.employeeService.create(newEmployee).subscribe({
       next: () => this.successSwal.fire(),
-      error: error => {
-        if (error.messasge) {
+      error: ({ error }: { error: ServerError }) => {
+        if (error.message) {
           this.errorSwal.text = error.message;
         }
 

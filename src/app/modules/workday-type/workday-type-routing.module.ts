@@ -9,7 +9,7 @@ const routes: Routes = [
     component: WorkdayTypeComponent,
   },
   {
-    path: 'new',
+    path: 'create',
     component: WorkdayTypeEditorComponent,
   },
 ];

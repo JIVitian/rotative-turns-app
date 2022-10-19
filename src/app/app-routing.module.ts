@@ -7,7 +7,7 @@ const routes: Routes = [
     loadChildren: () => import('./modules').then(m => m.EmployeeModule),
   },
   {
-    path: 'workday/type',
+    path: 'workday-type',
     loadChildren: () => import('./modules').then(m => m.WorkdayTypeModule),
   },
   {

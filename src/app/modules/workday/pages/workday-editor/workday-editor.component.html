@@ -1,0 +1,133 @@
+<main class="container mt-5">
+  <h1 class="pt-3 w-100 text-center">New Workday</h1>
+  <form
+    class="pt-1 w-50 d-flex flex-column mx-auto"
+    [formGroup]="workdayForm"
+    (submit)="onSubmit()"
+  >
+    <mat-form-field
+      appearance="fill"
+      class="mb-2"
+    >
+      <mat-label>Employee</mat-label>
+      <mat-select
+        formControlName="employee"
+        (selectionChange)="onSelectionChange($event, 'employee')"
+      >
+        <mat-option>Clear</mat-option>
+        <mat-option
+          *ngFor="let employee of employees$ | async"
+          [value]="employee"
+        >
+          {{ employee.name | titlecase }}
+        </mat-option>
+      </mat-select>
+      <mat-hint>Select an employee.</mat-hint>
+      <mat-error *ngIf="workdayForm.get('type')?.hasError('required')">
+        The employee is required.
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field
+      appearance="fill"
+      class="mb-2"
+    >
+      <mat-label>Workday Type</mat-label>
+      <mat-select
+        formControlName="type"
+        (selectionChange)="onSelectionChange($event, 'type')"
+      >
+        <mat-option>Clear</mat-option>
+        <mat-option
+          *ngFor="let type of workdayTypes$ | async"
+          [value]="type"
+        >
+          {{ type.name | titlecase }}
+        </mat-option>
+      </mat-select>
+      <mat-hint>Select a type.</mat-hint>
+      <mat-error *ngIf="workdayForm.get('type')?.hasError('required')">
+        The type is required.
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field
+      appearance="fill"
+      class="mb-2"
+    >
+      <mat-label>Choose a date</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        formControlName="date"
+        (dateChange)="onSelectionChange($event, 'date')"
+      />
+      <mat-hint>DD/MM/YYYY</mat-hint>
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <div class="d-flex my-3">
+      <div class="me-3">
+        <label
+          for="txt"
+          class="form-label me-3"
+        >
+          Time from
+        </label>
+        <input
+          type="time"
+          formControlName="timeFrom"
+          class="form-control"
+          step="1"
+        />
+      </div>
+      <div>
+        <label
+          for="txt"
+          class="form-label me-3"
+        >
+          Time to
+        </label>
+        <input
+          type="time"
+          formControlName="timeTo"
+          class="form-control"
+          step="1"
+        />
+      </div>
+    </div>
+
+    <div class="mb-2 text-end">
+      <button
+        type="submit"
+        class="btn btn-primary me-2"
+      >
+        Create
+      </button>
+      <a
+        routerLink="/workdays"
+        class="btn btn-danger"
+      >
+        Cancel
+      </a>
+    </div>
+  </form>
+</main>
+
+<!-- Success Alert -->
+<swal
+  #successSwal
+  [title]="'Success!'"
+  [text]="'Workday created successfully!'"
+  icon="success"
+></swal>
+
+<!-- Error Alert -->
+<swal
+  #errorSwal
+  title="Error"
+  text="Something went wrong!"
+  icon="error"
+></swal>
