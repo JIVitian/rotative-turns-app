@@ -89,7 +89,7 @@
             *matCellDef="let workday"
             class="text-center align-middle"
           >
-            {{ workday.date | date: 'dd/MM/yyyy' }}
+            {{ workday.date }}
           </td>
         </ng-container>
 
@@ -108,7 +108,7 @@
             *matCellDef="let workday"
             class="text-center align-middle"
           >
-            {{ workday.timeFrom | date: 'HH:mm' }}
+            {{ workday.timeFrom }} hs
           </td>
         </ng-container>
 
@@ -127,39 +127,39 @@
             *matCellDef="let workday"
             class="text-center align-middle"
           >
-            {{ workday.timeTo | date: 'HH:mm' }}
+            {{ workday.timeTo }} hs
           </td>
         </ng-container>
 
         <!-- Actions Column -->
-        <!-- <ng-container matColumnDef="actions">
-            <th
-              mat-header-cell
-              *matHeaderCellDef
-              scope="col"
-              class="text-center align-middle col-2"
+        <ng-container matColumnDef="actions">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            scope="col"
+            class="text-center align-middle col-2"
+          >
+            Actions
+          </th>
+          <td
+            mat-cell
+            *matCellDef="let workday"
+            class="text-center align-middle"
+          >
+            <button
+              class="btn btn-sm btn-primary me-2"
+              (click)="onEditClick(workday)"
             >
-              Actions
-            </th>
-            <td
-              mat-cell
-              *matCellDef="let workday"
-              class="text-center align-middle"
+              <i class="bi bi-pencil-fill"></i>
+            </button>
+            <button
+              class="btn btn-sm btn-danger"
+              (click)="onDeleteClick(workday.id)"
             >
-              <a
-                routerLink="edit/{{ workday.id }}"
-                class="btn btn-sm btn-primary me-2"
-              >
-                Edit
-              </a>
-              <button
-                class="btn btn-sm btn-danger"
-                (click)="deleteWorkday(workday.id)"
-              >
-                Delete
-              </button>
-            </td>
-          </ng-container> -->
+              <i class="bi bi-trash-fill"></i>
+            </button>
+          </td>
+        </ng-container>
 
         <tr
           mat-header-row
@@ -193,3 +193,38 @@
     </article>
   </section>
 </main>
+
+<!-- Update Success Alert -->
+<swal
+  #updateSuccessSwal
+  title="Workday Updated!"
+  text="The workday was updated successfully."
+  icon="success"
+></swal>
+
+<!-- Delete Confirmation Alert -->
+<swal
+  #deleteConfirmationSwal
+  title="Venta #123465"
+  text="¿Eliminar?"
+  icon="warning"
+  [showCancelButton]="true"
+  confirmButtonText="Sí, eliminar"
+  cancelButtonText="Cancelar"
+></swal>
+
+<!-- Delete Succes Alert -->
+<swal
+  #deleteSuccessSwal
+  title="Workday Deleted!"
+  text="The workday was deleted successfully."
+  icon="success"
+></swal>
+
+<!-- Delete Error Alert -->
+<swal
+  #deleteErrorSwal
+  title="Error"
+  text="The workday could not be deleted."
+  icon="error"
+></swal>

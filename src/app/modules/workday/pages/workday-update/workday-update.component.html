@@ -1,0 +1,54 @@
+<form
+  [formGroup]="updateWorkdayForm"
+  (submit)="onSubmit()"
+>
+  <h1>Change workday schedule</h1>
+  <mat-error *ngIf="!isFormValid()">
+    Both times are required and the time from must be less than the time to.
+  </mat-error>
+  <mat-form-field appearance="fill">
+    <label for="">Time From</label>
+    <input
+      matInput
+      type="time"
+      formControlName="timeFrom"
+      [(ngModel)]="workday.timeFrom"
+      step="1"
+    />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <label for="">Time To</label>
+    <br />
+    <input
+      matInput
+      type="time"
+      formControlName="timeTo"
+      [(ngModel)]="workday.timeTo"
+      step="1"
+    />
+  </mat-form-field>
+  <div mat-dialog-actions>
+    <button
+      class="btn btn-primary"
+      mat-button
+      cdkFocusInitial
+    >
+      Update
+    </button>
+    <button
+      class="btn btn-danger"
+      mat-button
+      [mat-dialog-close]="false"
+    >
+      Cancel
+    </button>
+  </div>
+</form>
+
+<!-- Error Alert -->
+<swal
+  #errorSwal
+  title="Error"
+  text="Something went wrong!"
+  icon="error"
+></swal>

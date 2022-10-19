@@ -15,9 +15,11 @@ import { WorkdayRoutingModule } from './workday-routing.module';
 
 import { WorkdayComponent } from './workday.component';
 import { WorkdayEditorComponent } from './pages/workday-editor/workday-editor.component';
+import { WorkdayUpdateComponent } from './pages/workday-update/workday-update.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
-  declarations: [WorkdayComponent, WorkdayEditorComponent],
+  declarations: [WorkdayComponent, WorkdayEditorComponent, WorkdayUpdateComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -25,6 +27,7 @@ import { WorkdayEditorComponent } from './pages/workday-editor/workday-editor.co
     MatTableModule,
     MatPaginatorModule,
     MatDatepickerModule,
+    MatDialogModule,
     MatFormFieldModule,
     MatNativeDateModule,
     MatInputModule,

@@ -1,5 +1,5 @@
 export type UpdateWorkdayDTO = {
   id: number;
-  timeFrom: Date;
-  timeTo: Date;
+  timeFrom: Date | string;
+  timeTo: Date | string;
 };
